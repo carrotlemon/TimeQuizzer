@@ -1,4 +1,6 @@
-.body {
+body {
+    background-color: lightpink;
+    text-align: center;
     /* 2nd and 3rd fonts are fallbacks for compatibility */
     font-family: "Lucida Console", "Courier New", monospace;
 }

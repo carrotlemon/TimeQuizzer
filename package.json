@@ -2,7 +2,7 @@
   "name": "timequizzer",
   "version": "1.0.0",
   "description": "Quizzes Times",
-  "main": "main.js",
+  "main": "./src/main/main.js",
   "scripts": {
     "start": "electron ."
   },
