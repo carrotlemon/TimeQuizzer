@@ -1,0 +1,26 @@
+{
+  "name": "timequizzer",
+  "version": "1.0.0",
+  "description": "Quizzes Times",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carrotlemon/TimeQuizzer.git"
+  },
+  "keywords": [
+    "time",
+    "quizzer"
+  ],
+  "author": "me",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/carrotlemon/TimeQuizzer/issues"
+  },
+  "homepage": "https://github.com/carrotlemon/TimeQuizzer#readme",
+  "devDependencies": {
+    "electron": "^34.3.0"
+  }
+}
