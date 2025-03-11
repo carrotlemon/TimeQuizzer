@@ -4,3 +4,29 @@ body {
     /* 2nd and 3rd fonts are fallbacks for compatibility */
     font-family: "Lucida Console", "Courier New", monospace;
 }
+input[type=text] {
+    padding: 0;
+    height: 30px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 1px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+}
+.btn {
+    font-family: "Lucida Console";
+    background-color: pink;
+    border-radius: 20px;
+    border-width: 10px;
+    border-color: magenta;
+    font-size: 40px;
+    color: magenta;
+    transition: all 0.3s;
+}
+.btn:hover {
+    transform: translateY(-10px);
+    background-color: magenta;
+    color: white;
+}

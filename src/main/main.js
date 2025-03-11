@@ -4,8 +4,8 @@ const path = require('node:path')
 
 const createWindow = () => {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 512,
+    height: 512,
     webPreferences: {
       preload: path.join(__dirname, './preload.js')
     }
@@ -13,10 +13,6 @@ const createWindow = () => {
 
   win.loadFile(path.join(__dirname, '../renderer/index.html'))
 }
-
-app.whenReady().then(() => {
-    createWindow()
-})
 
 // quit app when all windows closed (Windows, Linux)
 app.on('window-all-closed', () => {

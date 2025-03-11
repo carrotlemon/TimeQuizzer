@@ -9,10 +9,12 @@
     <script src="./renderer.js"></script>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    this is a test to see if something works!
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
+    <h1>Time Quiz!</h1>
+    <p>
+      How fast can you tell the time?<br>
+    </p>
+    <button class="btn" id="resetButton" type="button">Restart</button>
+    <canvas id="canvas" width="256" height="256" style="border:1px solid black;"></canvas><br>
+    <form id="form"><input type="text" id="text"></form><br>
   </body>
 </html>
