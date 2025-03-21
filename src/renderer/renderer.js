@@ -24,7 +24,6 @@ window.onload = () => {
     ctx.arc(canvas.width / 2, canvas.height / 2, 100, 0, 2 * Math.PI);
     ctx.fill();
     
-
     // Draw Ticks
     if(SHOWTICKS) {
       ctx.save();
@@ -93,7 +92,7 @@ window.onload = () => {
         inputValue.length == 3 && inputValue.substring(0, 1) == hours && inputValue.substring(1, 3) == minutes ||
         inputValue.length <= 2 && inputValue == hours && minutes == 0) {
         score++;
-        const correctSound = new Audio('../resources/correctDing.mp3');
+        const correctSound = new Audio('../resources/correctDing.wav');
         correctSound.play();
       } else {
         // INCORRECT
