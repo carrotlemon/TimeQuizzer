@@ -1,17 +1,23 @@
 const { app, BrowserWindow } = require('electron')
+
 // include the Node.js 'path' module at the top of your file
 const path = require('node:path')
 
 const createWindow = () => {
   const win = new BrowserWindow({
+    autoHideMenuBar: true,
     width: 512,
     height: 512,
     webPreferences: {
-      preload: path.join(__dirname, './preload.js')
+      preload: path.join(__dirname, './preload.js'), // Securely expose modules
+      contextIsolation: true, // Security feature
+      enableRemoteModule: false,
+      nodeIntegration: false // Keeps the renderer secure
     }
   })
 
   win.loadFile(path.join(__dirname, '../renderer/index.html'))
+  // win.webContents.openDevTools() // FOR DEBUGGING PURPOSES
 }
 
 // quit app when all windows closed (Windows, Linux)
