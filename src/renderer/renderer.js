@@ -2,6 +2,7 @@ window.onload = () => {
   const canvas = document.getElementById("canvas");
   const textbox = document.getElementById("text");
   const resetButton = document.getElementById("resetButton");
+  const timerButton = document.getElementById("timerButton");
   const DEBUG = false; // shows correct time
   const SHOWTICKS = true;
 
@@ -11,8 +12,8 @@ window.onload = () => {
   }
 
   const ctx = canvas.getContext("2d");
-  let inputText = "helo world!"; // Default text
 
+  // Main Loop
   function updateCanvas() {
     // Clear canvas
     ctx.beginPath();
@@ -52,28 +53,43 @@ window.onload = () => {
     ctx.fillRect(-3, -3, 90, 6);
     ctx.restore();
 
-    // ctx.fillStyle = "red";
-    // ctx.arc(canvas.width/2, canvas.height/2, 5, 0, 2*Math.PI);
-    // ctx.fill();
-
-    // Show Score
     ctx.fillStyle = "black";
     ctx.font = "24px serif";
-    ctx.fillText("Score: " + score, 10, 20);
+    // Show Highscore
+    ctx.fillText("Highscore: " + highScore, 10, 40);
+    // Show Score
+    ctx.fillText("Score: " + score, 10, 70);
 
-    // Show Time
+    // Show Correct Time
     if(DEBUG) {
-      ctx.fillStyle = "black";
-      ctx.font = "24px serif";
-      ctx.fillText(hours + ":" + minutes, 10, 40);
+      ctx.fillText(hours + ":" + minutes, 10, 100);
     }
 
+    // 
+    if(timerActive) {
+      time = timerLength - (performance.now()-startTime)/1000;
+      ctx.fillText(time.toFixed(2), canvas.width*8/10, 40);
+      if(time <= 0) {
+        timerActive = false;
+        score = 0;
+      }
+    }
+    
     requestAnimationFrame(updateCanvas);
   }
 
+  // VARIABLES
+  const timerLength = 30;
   let hours = parseInt(Math.random() * 12)+1, minutes = 15 * (parseInt(Math.random() * 3));
   minutes = String(minutes).padStart(2, "0");
   let score = 0;
+  let highScore = 0;
+
+  // Timer
+  let time = 0;
+  let startTime = performance.now();
+  let timerActive = false;
+
   textbox.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
       event.preventDefault(); // Prevent form submission if inside a form
@@ -92,10 +108,12 @@ window.onload = () => {
         inputValue.length == 3 && inputValue.substring(0, 1) == hours && inputValue.substring(1, 3) == minutes ||
         inputValue.length <= 2 && inputValue == hours && minutes == 0) {
         score++;
+        highScore = Math.max(highScore, score);
         const correctSound = new Audio('../resources/correctDing.wav');
         correctSound.play();
       } else {
         // INCORRECT
+        score = 0;
         const incorrectSound = new Audio('../resources/incorrectDing.wav');
         incorrectSound.play();
       }
@@ -108,13 +126,17 @@ window.onload = () => {
 
   resetButton.addEventListener('click', function() {
     score = 0;
+    timerActive = false;
+    requestAnimationFrame(updateCanvas);
+  });
+
+  timerButton.addEventListener('click', function() {
+    score = 0;
+    timerActive = true;
+    startTime = performance.now(); 
     requestAnimationFrame(updateCanvas);
   });
 
   // Start the draw loop
   updateCanvas();
 };
-
-function enterTime(inputTime) {
-
-}
